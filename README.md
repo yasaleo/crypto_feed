@@ -1,16 +1,1 @@
-# crypto_feeds
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Screencast from 2023-03-01 18-18-14.webm](https://user-images.githubusercontent.com/97823060/222146027-c1c3e561-6248-4f02-8c6f-195dd8f2fdcf.webm)

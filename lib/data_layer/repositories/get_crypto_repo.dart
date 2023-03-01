@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:crypto_feeds/data_layer/failures/failures.dart';
 import 'package:crypto_feeds/data_layer/utils/api_utils.dart';
@@ -9,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class CryptoDetailRepo {
   Future<Either<MainFailures, List<CryptoCoinModel>>> getCoinDetail() async {
-    final uri = Uri.https(Api.baseUrl, Api.path, {"vs_currency": "usd"});
+    final uri = Uri.https(Api.baseUrl, Api.allCoinsroute, {"vs_currency": "usd"});
     try {
       final response = await http.get(uri);
       if (response.statusCode == 200) {

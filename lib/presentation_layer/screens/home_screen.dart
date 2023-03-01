@@ -1,17 +1,19 @@
-import 'dart:developer';
 
+import 'package:crypto_feeds/data_layer/model/crypto_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../buisiness_Logic/bloc/crypto_details_bloc.dart';
+import '../../buisiness_Logic/allCryptoDetails/crypto_details_bloc.dart';
 import '../widgets/appbar_title.dart';
 import '../widgets/coin_tile.dart';
 import '../widgets/favorite_tile.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+  HomeScreen({
     super.key,
   });
+
+  late CryptoCoinModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,6 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<CryptoDetailsBloc, CryptoDetailsState>(
           builder: (context, state) {
-           
             final either = state.responseOption
                 .fold(() => null, (cryptodetails) => cryptodetails);
             if (either == null) {
@@ -35,12 +36,11 @@ class HomeScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            
 
             if (state.loading) {
               return const Center(child: CircularProgressIndicator());
             }
-             if (either.isLeft()) {
+            if (either.isLeft()) {
               return Center(
                 child: Text(
                   state.failures!.message,
@@ -50,10 +50,13 @@ class HomeScreen extends StatelessWidget {
             }
             if (state.cyptoDetails!.isNotEmpty) {
               final cryptoDetails = state.cyptoDetails;
+              model = cryptoDetails!.first;
+
               return ListView.builder(
-                itemCount: cryptoDetails!.length,
+                itemCount: cryptoDetails.length,
                 itemBuilder: (BuildContext context, int index) {
                   final cryptodetail = cryptoDetails[index];
+
                   if (index == 0) {
                     return const FavoritesTile();
                   } else {
@@ -73,7 +76,7 @@ class HomeScreen extends StatelessWidget {
           },
         ),
       ),
-     
+      
     );
   }
 }

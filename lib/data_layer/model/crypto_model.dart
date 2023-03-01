@@ -34,6 +34,19 @@ class CryptoCoinModel {
             json["price_change_percentage_24h"]?.toDouble(),
       );
 
+      Map<String, dynamic> toJson() => {
+        "id": id,
+        "symbol": symbol,
+        "name": name,
+        "image": image,
+        "current_price": currentPrice,
+        "market_cap": marketCap,
+       
+        "price_change_24h": priceChange24H,
+        "price_change_percentage_24h": priceChangePercentage24H,
+        
+      };
+
   List<CryptoCoinModel> cryptoCoinModelFromJson(String str) =>
       List<CryptoCoinModel>.from(
           json.decode(str).map((x) => CryptoCoinModel.fromJson(x)));

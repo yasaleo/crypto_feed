@@ -1,12 +1,15 @@
-import 'package:crypto_feeds/buisiness_Logic/bloc/crypto_details_bloc.dart';
+import 'package:crypto_feeds/buisiness_Logic/favorite_cypto/favorite_crypto_bloc.dart';
 import 'package:crypto_feeds/data_layer/repositories/get_crypto_repo.dart';
+import 'package:crypto_feeds/data_layer/repositories/get_fav_repo.dart';
 import 'package:crypto_feeds/data_layer/utils/constants.dart';
 import 'package:flutter/material.dart';
 
+import 'buisiness_Logic/allCryptoDetails/crypto_details_bloc.dart';
 import 'presentation_layer/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -20,6 +23,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               CryptoDetailsBloc(cryptoRepo: CryptoDetailRepo()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FavoriteCryptoBloc(favoriteRepo: FavoriteCoinRepo()),
         ),
       ],
       child: MaterialApp(
@@ -41,7 +48,7 @@ class MyApp extends StatelessWidget {
                 foregroundColor: Constants.onPrimaryContainerColor,
               ),
             )),
-        home: const HomeScreen(),
+        home:  HomeScreen(),
       ),
     );
   }
